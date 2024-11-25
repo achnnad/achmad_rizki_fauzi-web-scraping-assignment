@@ -22,10 +22,11 @@ class BmkgSpider(scrapy.Spider):
             weather_data = response.css(tab_position).css("div.cuaca-flex-child")
             for weather in weather_data:
                 yield {
-                    'Tanggal': date, 
-                    'Waktu Perkiraan': weather.css("h2.kota::text").get(),
-                    'Kondisi Cuaca': weather.css("div.kiri p::text").get(),
-                    'Suhu': weather.css("h2.heading-md::text").get(),
-                    'Intensitas Hujan': weather.css("div.kanan p::text").getall()[0],
-                    'Kecepatan dan Arah Angin': weather.css("div.kanan p::text").getall()[1]
+                    'tanggal': date, 
+                    'waktu_perkiraan': weather.css("h2.kota::text").get(),
+                    'kondisi_cuaca': weather.css("div.kiri p::text").get(),
+                    'suhu': weather.css("h2.heading-md::text").get(),
+                    'intensitas_hujan': weather.css("div.kanan p::text").getall()[0],
+                    'kecepatan': weather.css("div.kanan p::text").getall()[1],
+                    'arah_angin': weather.css("div.kanan p::text").getall()[2]
                 }
